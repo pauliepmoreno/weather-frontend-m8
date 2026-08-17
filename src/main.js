@@ -18,14 +18,12 @@ const router = createRouter({
     ]
 })
 
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, from) => {
     const rutasProtegidas = ['/favoritos']
     const isAuthenticated = store.state.isAuthenticated
-    
+
     if (rutasProtegidas.includes(to.path) && !isAuthenticated) {
-        next('/login')
-    } else {
-        next()
+        return '/login'
     }
 })
 

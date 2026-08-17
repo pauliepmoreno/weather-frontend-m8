@@ -34,6 +34,15 @@
         </div>
       </div>
 
+      <h3 class="mt-4">🚨 Alertas de clima</h3>
+      <div class="card mt-2">
+        <div class="card-body">
+          <p v-if="stats.promedio > 32">⚠️ Alerta de calor — temperatura promedio muy alta</p>
+          <p v-else-if="stats.promedio < 5">🥶 Alerta de frío — temperatura promedio muy baja</p>
+          <p v-else>✅ Sin alertas para esta semana</p>
+        </div>
+      </div>
+
       <router-link to="/" class="btn btn-primary mt-3">← Volver</router-link>
     </div>
     <div v-else>
@@ -43,13 +52,26 @@
 </template>
 
 <script setup>
+import { computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
-const route = useRoute()
-const id = route.params.id
-
-import ciudades from '../data/ciudades.js'
-const ciudad = ciudades.find(c => c.id === Number(id))
-
+import { useStore } from 'vuex'
 import calcularEstadisticas from '../utils/estadisticas.js'
-const stats = calcularEstadisticas(ciudad.pronostico)
+
+const route = useRoute()
+const store = useStore()
+const id = Number(route.params.id)
+
+const ciudad = computed(() =>
+  store.state.lugares.find(c => c.id === id)
+)
+
+const stats = computed(() =>
+  ciudad.value ? calcularEstadisticas(ciudad.value.pronostico) : null
+)
+
+onMounted(() => {
+  if (ciudad.value) {
+    store.commit('setLugarSeleccionado', ciudad.value)
+  }
+})
 </script>

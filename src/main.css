@@ -1,0 +1,43 @@
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f5f0ff;
+}
+
+.site-header {
+  background-color: #6a0dad;
+}
+
+.site-nav {
+  background-color: #3d1064;
+}
+.site-nav__brand, .site-nav__link {
+  color: white !important;
+}
+
+.site-footer {
+  background-color: #f8f9fa;
+  text-align: center;
+  padding: 1rem;
+}
+
+.place-card {
+  transition: transform 0.3s;
+}
+.place-card:hover {
+  transform: translateY(-5px);
+  background-color: #ede9fe;
+}
+.place-card__name {
+  font-weight: 600;
+}
+.place-card__temp {
+  font-size: 1.1rem;
+}
+.place-card--detail {
+  border-left: 4px solid #6a0dad;
+}
+
+.btn-custom {
+  background-color: #6a0dad;
+  color: white;
+}/*# sourceMappingURL=main.css.map */

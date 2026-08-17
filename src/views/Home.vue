@@ -36,7 +36,10 @@ import { useStore } from 'vuex'
 import ciudades from '../data/ciudades.js'
 
 const store = useStore()
-const unidad = ref('C')
+const unidad = computed({
+  get: () => store.state.unidad,
+  set: (valor) => store.commit('setUnidad', valor)
+})
 const busqueda = ref('')
 
 onMounted(() => {

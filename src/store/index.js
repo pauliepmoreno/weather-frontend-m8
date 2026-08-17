@@ -8,7 +8,8 @@ const store = createStore({
             lugares: [],
             lugarSeleccionado: null,
             cargando: false,
-            error: null
+            error: null,
+            unidad: 'C'
         }
     },
     mutations: {
@@ -34,6 +35,10 @@ const store = createStore({
         },
         setError(state, mensaje) {
             state.error = mensaje
+        },
+
+        setUnidad(state, unidad) {
+            state.unidad = unidad
         }
     }
 })
